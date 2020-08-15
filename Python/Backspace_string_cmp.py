@@ -16,4 +16,18 @@ class Solution:
         return S
     def backspaceCompare(self, S: str, T: str) -> bool:
         return self.final_str(S)== self.final_str(T)
- 
+
+    
+# Stack Approach: More Simplified
+    def backspaceCompare(self, S: str, T: str) -> bool:
+        # Usage of Stacks
+        def build(string:str):
+            ans = []
+            for s in string:
+                if s!="#":
+                    ans.append(s)
+                elif ans:
+                    ans.pop()
+            return ''.join(ans[:])
+        return build(S)==build(T)        
+        # return self.final_str(S)== self.final_str(T)
