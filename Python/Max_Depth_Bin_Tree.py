@@ -7,6 +7,8 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+###### -- Depth First Search ----- #####
 class Solution:
     def maxDepth(self, root: TreeNode) -> int:
         # maximum depth of binary tree 
@@ -30,3 +32,30 @@ class Solution:
             node_stack.pop()
         preorder(root, max_depth)
         return max(len_stack)
+    
+###### ----- Breadth First Search ---- ####
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxDepth(self, root: TreeNode) -> int:
+        if root is None:
+            return 0
+        que = deque([root, ])
+        nodes=[]
+        level =0
+        while que:
+            nodes.append([])
+            for i in range(0, len(que)):
+                root = que.popleft()
+                nodes[level].append(root.val)
+                if root.left is not None:
+                    que.append(root.left)
+                if root.right is not None:
+                    que.append(root.right)
+            level+=1 
+        print(nodes)
+        return len(nodes)
